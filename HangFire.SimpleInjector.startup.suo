@@ -1,0 +1,7 @@
+{
+  "MRU": [
+    "HangFire.SimpleInjector",
+    "HangFire.SimpleInjector.Tests"
+  ],
+  "MultiProjectConfigurations": {}
+}
