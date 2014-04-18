@@ -1,0 +1,16 @@
+D:\Websites\LibrariesWithSource\HangFire\HangFire.SimpleInjector\src\HangFire.SimpleInjector\bin\Release\HangFire.SimpleInjector.dll
+D:\Websites\LibrariesWithSource\HangFire\HangFire.SimpleInjector\src\HangFire.SimpleInjector\bin\Release\HangFire.SimpleInjector.pdb
+D:\Websites\LibrariesWithSource\HangFire\HangFire.SimpleInjector\src\HangFire.SimpleInjector\bin\Release\Common.Logging.dll
+D:\Websites\LibrariesWithSource\HangFire\HangFire.SimpleInjector\src\HangFire.SimpleInjector\bin\Release\HangFire.Core.dll
+D:\Websites\LibrariesWithSource\HangFire\HangFire.SimpleInjector\src\HangFire.SimpleInjector\bin\Release\Newtonsoft.Json.dll
+D:\Websites\LibrariesWithSource\HangFire\HangFire.SimpleInjector\src\HangFire.SimpleInjector\bin\Release\SimpleInjector.Diagnostics.dll
+D:\Websites\LibrariesWithSource\HangFire\HangFire.SimpleInjector\src\HangFire.SimpleInjector\bin\Release\SimpleInjector.dll
+D:\Websites\LibrariesWithSource\HangFire\HangFire.SimpleInjector\src\HangFire.SimpleInjector\bin\Release\Common.Logging.pdb
+D:\Websites\LibrariesWithSource\HangFire\HangFire.SimpleInjector\src\HangFire.SimpleInjector\bin\Release\Common.Logging.xml
+D:\Websites\LibrariesWithSource\HangFire\HangFire.SimpleInjector\src\HangFire.SimpleInjector\bin\Release\HangFire.Core.xml
+D:\Websites\LibrariesWithSource\HangFire\HangFire.SimpleInjector\src\HangFire.SimpleInjector\bin\Release\Newtonsoft.Json.xml
+D:\Websites\LibrariesWithSource\HangFire\HangFire.SimpleInjector\src\HangFire.SimpleInjector\bin\Release\SimpleInjector.xml
+D:\Websites\LibrariesWithSource\HangFire\HangFire.SimpleInjector\src\HangFire.SimpleInjector\bin\Release\SimpleInjector.Diagnostics.xml
+D:\Websites\LibrariesWithSource\HangFire\HangFire.SimpleInjector\src\HangFire.SimpleInjector\obj\Release\HangFire.SimpleInjector.dll
+D:\Websites\LibrariesWithSource\HangFire\HangFire.SimpleInjector\src\HangFire.SimpleInjector\obj\Release\HangFire.SimpleInjector.pdb
+D:\Websites\LibrariesWithSource\HangFire\HangFire.SimpleInjector\src\HangFire.SimpleInjector\obj\Release\HangFire.SimpleInjector.csprojResolveAssemblyReference.cache

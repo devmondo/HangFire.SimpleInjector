@@ -1,0 +1,1075 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HangFire.Core</name>
+    </assembly>
+    <members>
+        <member name="T:HangFire.Client.IJobCreationProcess">
+            <summary>
+            This interface acts as extensibility point for the process
+            of job creation. See the default implementation in the
+            <see cref="T:HangFire.Client.JobCreationProcess"/> class.
+            </summary>
+        </member>
+        <member name="M:HangFire.Client.IJobCreationProcess.Run(HangFire.Client.CreateContext)">
+            <summary>
+            Runs the process of job creation with the specified context.
+            </summary>
+        </member>
+        <member name="M:HangFire.BackgroundJobClientExtensions.Enqueue(HangFire.IBackgroundJobClient,System.Linq.Expressions.Expression{System.Action})">
+            <summary>
+            Creates a background job based on a specified static method 
+            call expression and places it into its actual queue. 
+            Please, see the <see cref="T:HangFire.QueueAttribute"/> to learn how to 
+            place the job on a non-default queue.
+            </summary>
+            
+            <param name="client">A job client instance.</param>
+            <param name="methodCall">Static method call expression that will be marshalled to the Server.</param>
+            <returns>Unique identifier of the created job.</returns>
+        </member>
+        <member name="M:HangFire.BackgroundJobClientExtensions.Enqueue``1(HangFire.IBackgroundJobClient,System.Linq.Expressions.Expression{System.Action{``0}})">
+            <summary>
+            Creates a background job based on a specified instance method 
+            call expression and places it into its actual queue. 
+            Please, see the <see cref="T:HangFire.QueueAttribute"/> to learn how to 
+            place the job on a non-default queue.
+            </summary>
+            
+            <typeparam name="T">Type whose method will be invoked during job processing.</typeparam>
+            <param name="client">A job client instance.</param>
+            <param name="methodCall">Instance method call expression that will be marshalled to the Server.</param>
+            <returns>Unique identifier of the created job.</returns>
+        </member>
+        <member name="M:HangFire.BackgroundJobClientExtensions.Enqueue(HangFire.IBackgroundJobClient,System.Linq.Expressions.Expression{System.Action},System.String)">
+            <summary>
+            Creates a background job based on a specified static method 
+            call expression and places it into specified queue. 
+            Please, note that the <see cref="T:HangFire.QueueAttribute"/> can
+            override the specified queue.
+            </summary>
+            
+            <param name="client">A job client instance.</param>
+            <param name="methodCall">Instance method call expression that will be marshalled to the Server.</param>
+            <param name="queue">Queue to which the job will be placed.</param>
+            <returns>Unique identifier of the created job.</returns>
+        </member>
+        <member name="M:HangFire.BackgroundJobClientExtensions.Enqueue``1(HangFire.IBackgroundJobClient,System.Linq.Expressions.Expression{System.Action{``0}},System.String)">
+            <summary>
+            Creates a background job based on a specified instance method 
+            call expression and places it into specified queue. 
+            Please, note that the <see cref="T:HangFire.QueueAttribute"/> can
+            override the specified queue.
+            </summary>
+            
+            <typeparam name="T">Type whose method will be invoked during job processing.</typeparam>
+            <param name="client">A job client instance.</param>
+            <param name="methodCall">Instance method call expression that will be marshalled to the Server.</param>
+            <param name="queue">Queue to which the job will be placed.</param>
+            <returns>Unique identifier of the created job.</returns>
+        </member>
+        <member name="M:HangFire.BackgroundJobClientExtensions.Schedule(HangFire.IBackgroundJobClient,System.Linq.Expressions.Expression{System.Action},System.TimeSpan)">
+            <summary>
+            Creates a new background job based on a specified static method
+            call expression and schedules it to be enqueued after a given delay.
+            </summary>
+            <param name="client">A job client instance.</param>
+            <param name="methodCall">Instance method call expression that will be marshalled to the Server.</param>
+            <param name="delay">Delay, after which the job will be enqueued.</param>
+            <returns>Unique identifier of the created job.</returns>
+        </member>
+        <member name="M:HangFire.BackgroundJobClientExtensions.Schedule``1(HangFire.IBackgroundJobClient,System.Linq.Expressions.Expression{System.Action{``0}},System.TimeSpan)">
+            <summary>
+            Creates a new background job based on a specified instance method
+            call expression and schedules it to be enqueued after a given delay.
+            </summary>
+            
+            <typeparam name="T">Type whose method will be invoked during job processing.</typeparam>
+            <param name="client">A job client instance.</param>
+            <param name="methodCall">Instance method call expression that will be marshalled to the Server.</param>
+            <param name="delay">Delay, after which the job will be enqueued.</param>
+            <returns>Unique identifier of the created job.</returns>
+        </member>
+        <member name="M:HangFire.BackgroundJobClientExtensions.Create(HangFire.IBackgroundJobClient,System.Linq.Expressions.Expression{System.Action},HangFire.Common.States.State)">
+            <summary>
+            Creates a new background job based on a specified static method
+            within a given state.
+            </summary>
+            <param name="client">A job client instance.</param>
+            <param name="methodCall">Static method call expression that will be marshalled to the Server.</param>
+            <param name="state">Initial state of a job.</param>
+            <returns>Unique identifier of the created job.</returns>
+        </member>
+        <member name="M:HangFire.BackgroundJobClientExtensions.Create``1(HangFire.IBackgroundJobClient,System.Linq.Expressions.Expression{System.Action{``0}},HangFire.Common.States.State)">
+            <summary>
+            Creates a new background job based on a specified instance method
+            within a given state.
+            </summary>
+            
+            <typeparam name="T">Type whose method will be invoked during job processing.</typeparam>
+            <param name="client">A job client instance.</param>
+            <param name="methodCall">Instance method call expression that will be marshalled to the Server.</param>
+            <param name="state">Initial state of a job.</param>
+            <returns>Unique identifier of the created job.</returns>
+        </member>
+        <member name="T:HangFire.Common.CachedExpressionCompiler">
+             <summary>
+             The caching expression tree compiler was copied from MVC core to MVC Futures so that Futures code could benefit
+             from it and so that it could be exposed as a public API. This is the only public entry point into the system.
+             See the comments in the ExpressionUtil namespace for more information.
+            
+             The unit tests for the ExpressionUtil.* types are in the System.Web.Mvc.Test project.
+             </summary>
+        </member>
+        <member name="M:HangFire.Common.CachedExpressionCompiler.Compile``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Implements caching around LambdaExpression.Compile() so that equivalent expression trees only have to be
+            compiled once.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.CachedExpressionCompiler.Evaluate(System.Linq.Expressions.Expression)">
+            <summary>
+            Evaluates an expression (not a LambdaExpression), e.g. 2 + 2.
+            </summary>
+            <param name="arg"></param>
+            <returns>Expression result.</returns>
+        </member>
+        <member name="T:HangFire.Client.CreateJobFailedException">
+            <summary>
+            The exception that is thrown when a <see cref="T:HangFire.BackgroundJobClient"/> class instance
+            could not create a job due to another exception was thrown.
+            </summary>
+        </member>
+        <member name="M:HangFire.Client.CreateJobFailedException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HangFire.Client.CreateJobFailedException"/>
+            class with a specified error message and a reference to the
+            inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="inner">The exception that is the cause of this exception, not null.</param>
+        </member>
+        <member name="T:HangFire.IBackgroundJobClient">
+            <summary>
+            Represents a HangFire Client API. Contains methods related
+            to the job creation feature. See the default implementation
+            in the <see cref="T:HangFire.BackgroundJobClient"/> class.
+            </summary>
+        </member>
+        <member name="M:HangFire.IBackgroundJobClient.Create(HangFire.Common.Job,HangFire.Common.States.State)">
+            <summary>
+            Creates a given job in a specified state in the storage.
+            </summary>
+            
+            <param name="job">Background job that will be created in a storage.</param>
+            <param name="state">The initial state of the job.</param>
+            <returns>The unique identifier of the created job.</returns>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="job"/> argument is null.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="state"/> argument is null.</exception>
+            <exception cref="T:HangFire.Client.CreateJobFailedException">Job creation has been failed due to inner exception.</exception>
+        </member>
+        <member name="T:HangFire.Client.CreateContext">
+            <summary>
+            Provides information about the context in which the job
+            is being created.
+            </summary>
+        </member>
+        <member name="M:HangFire.Client.CreateContext.SetJobParameter(System.String,System.Object)">
+            <summary>
+            Sets the job parameter of the specified <paramref name="name"/>
+            to the corresponding <paramref name="value"/>. The value of the
+            parameter is being serialized to a JSON string.
+            </summary>
+            
+            <param name="name">The name of the parameter.</param>
+            <param name="value">The value of the parameter.</param>
+            
+            <exception cref="T:System.ArgumentNullException">The <paramref name="name"/> is null or empty.</exception>
+        </member>
+        <member name="M:HangFire.Client.CreateContext.GetJobParameter``1(System.String)">
+            <summary>
+            Gets the job parameter of the specified <paramref name="name"/>
+            if it exists. The parameter is being deserialized from a JSON 
+            string value to the given type <typeparamref name="T"/>.
+            </summary>
+            
+            <typeparam name="T">The type of the parameter.</typeparam>
+            <param name="name">The name of the parameter.</param>
+            <returns>The value of the given parameter if it exists or null otherwise.</returns>
+            
+            <exception cref="T:System.ArgumentNullException">The <paramref name="name"/> is null or empty.</exception>
+            <exception cref="T:System.NotSupportedException">Could not deserialize the parameter value to the type <typeparamref name="T"/>.</exception>
+        </member>
+        <member name="P:HangFire.Client.CreateContext.Items">
+            <summary>
+            Gets an instance of the key-value storage. You can use it
+            to pass additional information between different client filters
+            or just between different methods.
+            </summary>
+        </member>
+        <member name="P:HangFire.Client.CreateContext.InitialState">
+            <summary>
+            Gets the initial state of the creating job. Note, that
+            the final state of the created job could be changed after 
+            the registered instances of the <see cref="T:HangFire.Common.States.IElectStateFilter"/>
+            class are doing their job.
+            </summary>
+        </member>
+        <member name="T:HangFire.Common.Job">
+            <summary>
+            Represents the information about background invocation of a method.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.Job.#ctor(HangFire.Common.MethodData,System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:HangFire.Common.Job"/> class with
+            a given method data and arguments.
+            </summary>
+            
+            <remarks>
+            Each argument should be serialized into a string using the 
+            <see cref="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)"/> method of
+            a corresponding <see cref="T:System.ComponentModel.TypeConverter"/> instance.
+            </remarks>
+            
+            <param name="methodData">Method that will be called during the performance of the job.</param>
+            <param name="arguments">Serialized arguments that will be passed to a <paramref name="methodData"/>.</param>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="methodData"/> argument is null.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="arguments"/> argument is null.</exception>
+        </member>
+        <member name="M:HangFire.Common.Job.FromExpression(System.Linq.Expressions.Expression{System.Action})">
+            <summary>
+            Creates a new instance of the <see cref="T:HangFire.Common.Job"/> class on a 
+            basis of the given static method call expression.
+            </summary>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="methodCall"/> argument is null.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="methodCall"/> expression body does not contain <see cref="T:System.Linq.Expressions.MethodCallExpression"/>.</exception>
+        </member>
+        <member name="M:HangFire.Common.Job.FromExpression``1(System.Linq.Expressions.Expression{System.Action{``0}})">
+            <summary>
+            Creates a new instance of the <see cref="T:HangFire.Common.Job"/> class on a 
+            basis of the given instance method call expression.
+            </summary>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="methodCall"/> argument is null.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="methodCall"/> expression body does not contain <see cref="T:System.Linq.Expressions.MethodCallExpression"/>.</exception>
+        </member>
+        <member name="P:HangFire.Common.Job.MethodData">
+            <summary>
+            Gets the information about a method that will be performed in background.
+            </summary>
+        </member>
+        <member name="P:HangFire.Common.Job.Arguments">
+            <summary>
+            Gets arguments array that will be passed to the method during its invocation.
+            </summary>
+        </member>
+        <member name="T:HangFire.Common.MethodData">
+            <summary>
+            Represents information about type and method that will be called during
+            the performance of a job.
+            </summary>
+            
+            <remarks>
+            Information about method that will be called consist of a 
+            <see cref="P:HangFire.Common.MethodData.Type"/> and a <see cref="P:HangFire.Common.MethodData.MethodInfo"/>.
+            Although there is the <see cref="!:System.Reflection.MethodInfo.DeclaringType"/> property,
+            this class allows you to set a class that contains the given method
+            explicitly, enabling you to choose not only the base class, but one
+            of its successors.
+            </remarks>
+        </member>
+        <member name="P:HangFire.Common.MethodData.Type">
+            <summary>
+            Gets an instance of <see cref="T:System.Type"/> class that contains 
+            the given <see cref="P:HangFire.Common.MethodData.MethodInfo"/>. It can be both the type that declares the
+            method as well as its successor.
+            </summary>
+        </member>
+        <member name="P:HangFire.Common.MethodData.MethodInfo">
+            <summary>
+            Gets an instance of the <see cref="T:System.Reflection.MethodInfo"/> class that points
+            to the method that will be called during the performance of a job.
+            </summary>
+        </member>
+        <member name="P:HangFire.Common.MethodData.OldFormat">
+            <summary>
+            Gets wheither this instance contains the information in the
+            Old Job Format.
+            TODO: remove it before 1.0
+            </summary>
+        </member>
+        <member name="T:HangFire.Common.JobLoadException">
+            <summary>
+            The exception that is thrown when a job could not
+            be loaded from the storage due to missing or incorrect 
+            information about its type or method.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.JobLoadException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HangFire.Common.JobLoadException"/>
+            class.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.JobLoadException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HangFire.Common.JobLoadException"/>
+            class with a given message.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.JobLoadException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HangFire.Common.JobLoadException"/>
+            class with a given message and information about inner exception.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.JobLoadException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HangFire.Common.JobLoadException"/>
+            class with given serialization info and streaming context.
+            </summary>
+        </member>
+        <member name="T:HangFire.Common.Filters.JobFilter">
+            <summary>
+            Represents a metadata class that contains a reference to the 
+            implementation of one or more of the filter interfaces, the filter's 
+            order, and the filter's scope.
+            </summary>
+        </member>
+        <member name="F:HangFire.Common.Filters.JobFilter.DefaultOrder">
+            <summary>
+            Represents a constant that is used to specify the default ordering of filters.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.Filters.JobFilter.#ctor(System.Object,HangFire.Common.Filters.JobFilterScope,System.Nullable{System.Int32})">
+            <summary>
+            Initializes a new instance of the Filter class.
+            </summary>
+            <param name="instance">Filter instance.</param>
+            <param name="scope">Filter scope.</param>
+            <param name="order">The run order.</param>
+        </member>
+        <member name="P:HangFire.Common.Filters.JobFilter.Instance">
+            <summary>
+            Gets the instance of the filter.
+            </summary>
+        </member>
+        <member name="P:HangFire.Common.Filters.JobFilter.Order">
+            <summary>
+            Gets the order in which the filter is applied.
+            </summary>
+        </member>
+        <member name="P:HangFire.Common.Filters.JobFilter.Scope">
+            <summary>
+            Gets the scope ordering of the filter.
+            </summary>
+        </member>
+        <member name="T:HangFire.Common.Filters.JobFilterProviderCollection">
+            <summary>
+            Represents the collection of filter providers for the application.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.Filters.JobFilterProviderCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HangFire.Common.Filters.JobFilterProviderCollection"/> 
+            class.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.Filters.JobFilterProviderCollection.#ctor(System.Collections.Generic.IList{HangFire.Common.Filters.IJobFilterProvider})">
+            <summary>
+            Initializes a new instance of the <see cref="T:HangFire.Common.Filters.JobFilterProviderCollection"/> 
+            class using the filter providers collection.
+            </summary>
+            <param name="providers"></param>
+        </member>
+        <member name="M:HangFire.Common.Filters.JobFilterProviderCollection.GetFilters(HangFire.Common.MethodData)">
+            <summary>
+            Returns the collection of filter providers.
+            </summary>
+            <param name="methodData">Job method, can be null.</param>
+            <returns>The collection of filter providers.</returns>
+        </member>
+        <member name="T:HangFire.Common.Filters.JobFilterProviders">
+            <summary>
+            Provides a registration point for filters.
+            </summary>
+        </member>
+        <member name="P:HangFire.Common.Filters.JobFilterProviders.Providers">
+            <summary>
+            Provides a registration point for filters.
+            </summary>
+        </member>
+        <member name="T:HangFire.Common.Filters.JobFilterScope">
+            <summary>
+            Defines values that specify the order in which HangFire filters 
+            run within the same filter type and filter order.
+            </summary>
+            
+            <remarks>
+            HangFire supports the following types of filters:
+            
+            <list type="number">
+                <item>
+                    <description>
+                        Client / Server filters, which implement
+                        <see cref="T:HangFire.Client.Filters.IClientFilter"/> and <see cref="T:HangFire.Server.Filters.IServerFilter"/>
+                        interfaces respectively.
+                    </description>
+                </item>
+                <item>
+                    <description>
+                        State changing filters, which implement the
+                        <see cref="T:HangFire.Common.States.IElectStateFilter"/> interface.
+                    </description>
+                </item>
+                <item>
+                    <description>
+                        State changed filters, which implement the
+                        <see cref="T:HangFire.Common.States.IApplyStateFilter"/> interface.
+                    </description>
+                </item>
+                <item>
+                    <description>
+                        Client / Server exception filters, which implement
+                        <see cref="T:HangFire.Client.Filters.IClientExceptionFilter"/> or 
+                        <see cref="T:HangFire.Server.Filters.IServerExceptionFilter"/> interfaces
+                        respectively.
+                    </description>
+                </item>
+            </list>
+            
+            Порядок запуска указанных типов фильтров строго фиксирован, например,
+            фильтры исключений всегда выполняются после всех остальных фильтров,
+            а фильтры состояний всегда запускаются внутри клиентских и серверных
+            фильтров.
+            
+            Внутри же одного типа фильтров, порядок выполнения сначала определяется
+            значением Order, а затем значением Scope. Перечисление <see cref="T:HangFire.Common.Filters.JobFilterScope"/> 
+            определяет следующие значения (в порядке, в котором они будут выполнены):
+            
+            <list type="number">
+                <item>
+                    <description>
+                        <see cref="F:HangFire.Common.Filters.JobFilterScope.Global"/>.
+                    </description>
+                </item>
+                <item>
+                    <description>
+                        <see cref="F:HangFire.Common.Filters.JobFilterScope.Type"/>.
+                    </description>
+                </item>
+                <item>
+                    <description>
+                        <see cref="F:HangFire.Common.Filters.JobFilterScope.Method"/>.
+                    </description>
+                </item>
+            </list>
+            
+            Для примера, клиентский фильтр, у которого свойство Order имеет значение 0,
+            а значение filter scope равно <see cref="F:HangFire.Common.Filters.JobFilterScope.Global"/>,
+            будет выполнен раньше фильтра с тем же самым значением Order,
+            но c filter scope, равным <see cref="F:HangFire.Common.Filters.JobFilterScope.Type"/>.
+            
+            Значения Scope задаются, в основном, в реализациях интерфейса
+            <see cref="T:HangFire.Common.Filters.IJobFilterProvider"/>. Так, класс <see cref="T:HangFire.Common.Filters.GlobalJobFilterCollection"/>
+            определяет значение Scope как <see cref="F:HangFire.Common.Filters.JobFilterScope.Global"/>.
+            
+            Порядок выполнения фильтров одинакового типа, с одинаковым значением
+            Order и с одинаковым scope, не оговаривается.
+            </remarks>
+        </member>
+        <member name="F:HangFire.Common.Filters.JobFilterScope.Global">
+            <summary>
+            Specifies an order before the <see cref="F:HangFire.Common.Filters.JobFilterScope.Type"/>.
+            </summary>
+        </member>
+        <member name="F:HangFire.Common.Filters.JobFilterScope.Type">
+            <summary>
+            Specifies an order after the <see cref="F:HangFire.Common.Filters.JobFilterScope.Global"/> and
+            before the <see cref="F:HangFire.Common.Filters.JobFilterScope.Method"/>.
+            </summary>
+        </member>
+        <member name="F:HangFire.Common.Filters.JobFilterScope.Method">
+            <summary>
+            Specifies an order after the <see cref="F:HangFire.Common.Filters.JobFilterScope.Type"/>.
+            </summary>
+        </member>
+        <member name="T:HangFire.Client.Filters.ClientExceptionContext">
+            <summary>
+            Provides the context for the <see cref="M:HangFire.Client.Filters.IClientExceptionFilter.OnClientException(HangFire.Client.Filters.ClientExceptionContext)"/>
+            method of the <see cref="T:HangFire.Client.Filters.IClientExceptionFilter"/> interface.
+            </summary>
+        </member>
+        <member name="P:HangFire.Client.Filters.ClientExceptionContext.Exception">
+            <summary>
+            Gets an exception that occurred during the creation of the job.
+            </summary>
+        </member>
+        <member name="P:HangFire.Client.Filters.ClientExceptionContext.ExceptionHandled">
+            <summary>
+            Gets or sets a value that indicates that this <see cref="T:HangFire.Client.Filters.ClientExceptionContext"/>
+            object handles an exception occurred during the creation of the job.
+            </summary>
+        </member>
+        <member name="T:HangFire.Common.Filters.GlobalJobFilterCollection">
+            <summary>
+            Represents a class that contains all the global job filters.
+            </summary>
+            <remarks>
+            Global filters run for every create, perform and state change
+            of every job. All the instances in the global filters collection
+            must be thread-safe.
+            
+            You can register a global filter using the 
+            <see cref="P:HangFire.GlobalJobFilters.Filters"/> registration endpoint.
+            </remarks>
+        </member>
+        <member name="T:HangFire.Common.Filters.IJobFilterProvider">
+            <summary>
+            Provides an interface for finding filters.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.Filters.IJobFilterProvider.GetFilters(HangFire.Common.MethodData)">
+            <summary>
+            Returns an enumerator that contains all the <see cref="T:HangFire.Common.Filters.IJobFilterProvider"/>.
+            </summary>
+            
+            <param name="methodData">Job invocation data.</param>
+            
+            <returns>
+            The enumerator that contains all the <see cref="T:HangFire.Common.Filters.IJobFilterProvider"/>.
+            </returns>
+        </member>
+        <member name="M:HangFire.Common.Filters.GlobalJobFilterCollection.Add(System.Object)">
+            <summary>
+            Adds the specified filter to the global filter collection.
+            </summary>
+            <param name="filter">The filter instance.</param>
+        </member>
+        <member name="M:HangFire.Common.Filters.GlobalJobFilterCollection.Add(System.Object,System.Int32)">
+            <summary>
+            Adds the specified filter to the global filter collection 
+            using the specified filter run order.
+            </summary>
+            <param name="filter">The filter instance.</param>
+            <param name="order">The run order.</param>
+        </member>
+        <member name="M:HangFire.Common.Filters.GlobalJobFilterCollection.Clear">
+            <summary>
+            Removes all filters from the global filter collection.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.Filters.GlobalJobFilterCollection.Contains(System.Object)">
+            <summary>
+            Determines wheither a filter is in the global filter collection.
+            </summary>
+            <param name="filter">The filter instance.</param>
+            <returns>True if the global filter collection contains the filter, otherwise false.</returns>
+        </member>
+        <member name="M:HangFire.Common.Filters.GlobalJobFilterCollection.Remove(System.Object)">
+            <summary>
+            Removes all filters that match the specified filter.
+            </summary>
+            <param name="filter">The filter instance.</param>
+        </member>
+        <member name="P:HangFire.Common.Filters.GlobalJobFilterCollection.Count">
+            <summary>
+            Gets the number of filters in the global job filter collection.
+            </summary>
+        </member>
+        <member name="T:HangFire.Client.Filters.IClientExceptionFilter">
+            <summary>
+            Defines methods that are required for the client exception filter.
+            </summary>
+        </member>
+        <member name="M:HangFire.Client.Filters.IClientExceptionFilter.OnClientException(HangFire.Client.Filters.ClientExceptionContext)">
+            <summary>
+            Called when an exception occurred during the creation of the job.
+            </summary>
+            <param name="filterContext">The filter context.</param>
+        </member>
+        <member name="T:HangFire.Common.States.IElectStateFilter">
+            <summary>
+            Defines methods that are required for a state changing filter.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.States.IElectStateFilter.OnStateElection(HangFire.Common.States.ElectStateContext)">
+            <summary>
+            Called when the current state of the job is being changed to the
+            specified candidate state.
+            This state change could be intercepted and the final state could
+            be changed through setting the different state in the context 
+            in an implementation of this method.
+            </summary>
+        </member>
+        <member name="T:HangFire.Common.Filters.JobFilterAttribute">
+            <summary>
+            Represents the base class for job filter attributes.
+            </summary>
+        </member>
+        <member name="T:HangFire.Common.Filters.IJobFilter">
+            <summary>
+            Defines members that specify the order of filters and 
+            whether multiple filters are allowed.
+            </summary>
+        </member>
+        <member name="P:HangFire.Common.Filters.IJobFilter.AllowMultiple">
+            <summary>
+            When implemented in a class, gets or sets a value 
+            that indicates whether multiple filters are allowed.
+            </summary>
+        </member>
+        <member name="P:HangFire.Common.Filters.IJobFilter.Order">
+            <summary>
+            When implemented in a class, gets the filter order.
+            </summary>
+        </member>
+        <member name="T:HangFire.Common.Filters.JobFilterAttributeFilterProvider">
+            <summary>
+            Defines a filter provider for filter attributes.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.Filters.JobFilterAttributeFilterProvider.#ctor">
+            <summary>
+            Initializes a new instance of the  <see cref="T:HangFire.Common.Filters.JobFilterAttributeFilterProvider"/>
+            class with the attribute instance caching enabled.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.Filters.JobFilterAttributeFilterProvider.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HangFire.Common.Filters.JobFilterAttributeFilterProvider"/> 
+            class and optionally caches attribute instances.
+            </summary>
+            <param name="cacheAttributeInstances"></param>
+        </member>
+        <member name="T:HangFire.Common.Filters.JobFilterInfo">
+            <summary>
+            Encapsulates information about the available job filters.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.Filters.JobFilterInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HangFire.Common.Filters.JobFilterInfo"/> class.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.Filters.JobFilterInfo.#ctor(System.Collections.Generic.IEnumerable{HangFire.Common.Filters.JobFilter})">
+            <summary>
+            Initializes a new instance of the <see cref="T:HangFire.Common.Filters.JobFilterInfo"/> class using the specified filters collection.
+            </summary>
+            <param name="filters">The filters collection.</param>
+        </member>
+        <member name="P:HangFire.Common.Filters.JobFilterInfo.ClientFilters">
+            <summary>
+            Gets all the client filters in the application.
+            </summary>
+            
+            <returns>
+            The client filters.
+            </returns>
+        </member>
+        <member name="P:HangFire.Common.Filters.JobFilterInfo.ServerFilters">
+            <summary>
+            Gets all the server filters in the application.
+            </summary>
+            
+            <returns>
+            The server filters.
+            </returns>
+        </member>
+        <member name="P:HangFire.Common.Filters.JobFilterInfo.ElectStateFilters">
+            <summary>
+            Gets all the stat changing filters in the application.
+            </summary>
+            
+            <returns>
+            The state changing filters.
+            </returns>
+        </member>
+        <member name="P:HangFire.Common.Filters.JobFilterInfo.ApplyStateFilters">
+            <summary>
+            Gets all the state changed filters in the application.
+            </summary>
+            
+            <returns>
+            The state changed filters.
+            </returns>
+        </member>
+        <member name="P:HangFire.Common.Filters.JobFilterInfo.ClientExceptionFilters">
+            <summary>
+            Gets all the client exception filters in the application.
+            </summary>
+            
+            <returns>
+            The client exception filters.
+            </returns>
+        </member>
+        <member name="P:HangFire.Common.Filters.JobFilterInfo.ServerExceptionFilters">
+            <summary>
+            Gets all the server exception filters in the application.
+            </summary>
+            
+            <returns>
+            The server exception filters.
+            </returns>
+        </member>
+        <member name="T:HangFire.Server.Filters.IServerExceptionFilter">
+            <summary>
+            Defines methods that are required for the server exception filter.
+            </summary>
+        </member>
+        <member name="M:HangFire.Server.Filters.IServerExceptionFilter.OnServerException(HangFire.Server.Filters.ServerExceptionContext)">
+            <summary>
+            Called when an exception occurred during the performance of the job.
+            </summary>
+            <param name="filterContext">The filter context.</param>
+        </member>
+        <member name="T:HangFire.Client.Filters.CreatedContext">
+            <summary>
+            Provides the context for the <see cref="M:HangFire.Client.Filters.IClientFilter.OnCreated(HangFire.Client.Filters.CreatedContext)"/> 
+            method of the <see cref="T:HangFire.Client.Filters.IClientFilter"/> interface.
+            </summary>
+        </member>
+        <member name="P:HangFire.Client.Filters.CreatedContext.Exception">
+            <summary>
+            Gets an exception that occurred during the creation of the job.
+            </summary>
+        </member>
+        <member name="P:HangFire.Client.Filters.CreatedContext.Canceled">
+            <summary>
+            Gets a value that indicates that this <see cref="T:HangFire.Client.Filters.CreatedContext"/>
+            object was canceled.
+            </summary>
+        </member>
+        <member name="P:HangFire.Client.Filters.CreatedContext.ExceptionHandled">
+            <summary>
+            Gets or sets a value that indicates that this <see cref="T:HangFire.Client.Filters.CreatedContext"/>
+            object handles an exception occurred during the creation of the job.
+            </summary>
+        </member>
+        <member name="T:HangFire.Client.Filters.CreatingContext">
+            <summary>
+            Provides the context for the <see cref="M:HangFire.Client.Filters.IClientFilter.OnCreating(HangFire.Client.Filters.CreatingContext)"/>
+            method of the <see cref="T:HangFire.Client.Filters.IClientFilter"/> interface.
+            </summary>
+        </member>
+        <member name="P:HangFire.Client.Filters.CreatingContext.Canceled">
+            <summary>
+            Gets or sets a value that indicates that this <see cref="T:HangFire.Client.Filters.CreatingContext"/>
+            object was canceled.
+            </summary>
+        </member>
+        <member name="T:HangFire.Server.Performing.PerformContext">
+            <summary>
+            Provides information about the context in which the job
+            is being performed.
+            </summary>
+        </member>
+        <member name="P:HangFire.Server.Performing.PerformContext.Items">
+            <summary>
+            Gets an instance of the key-value storage. You can use it
+            to pass additional information between different client filters
+            or just between different methods.
+            </summary>
+        </member>
+        <member name="T:HangFire.Server.Filters.ServerExceptionContext">
+            <summary>
+            Provides the context for the <see cref="M:HangFire.Server.Filters.IServerExceptionFilter.OnServerException(HangFire.Server.Filters.ServerExceptionContext)"/>
+            method of the <see cref="T:HangFire.Server.Filters.IServerExceptionFilter"/> interface.
+            </summary>
+        </member>
+        <member name="P:HangFire.Server.Filters.ServerExceptionContext.Exception">
+            <summary>
+            Gets an exception that occurred during the performance of the job.
+            </summary>
+        </member>
+        <member name="P:HangFire.Server.Filters.ServerExceptionContext.ExceptionHandled">
+            <summary>
+            Gets or sets a value that indicates that this <see cref="T:HangFire.Server.Filters.ServerExceptionContext"/>
+            object handles an exception occurred during the performance of the job.
+            </summary>
+        </member>
+        <member name="T:HangFire.Server.Filters.PerformedContext">
+            <summary>
+            Provides the context for the <see cref="M:HangFire.Server.Filters.IServerFilter.OnPerformed(HangFire.Server.Filters.PerformedContext)"/>
+            method of the <see cref="T:HangFire.Server.Filters.IServerFilter"/> interface.
+            </summary>
+        </member>
+        <member name="P:HangFire.Server.Filters.PerformedContext.Canceled">
+            <summary>
+            Gets a value that indicates that this <see cref="T:HangFire.Server.Filters.PerformedContext"/>
+            object was canceled.
+            </summary>
+        </member>
+        <member name="P:HangFire.Server.Filters.PerformedContext.Exception">
+            <summary>
+            Gets an exception that occurred during the performance of the job.
+            </summary>
+        </member>
+        <member name="P:HangFire.Server.Filters.PerformedContext.ExceptionHandled">
+            <summary>
+            Gets or sets a value that indicates that this <see cref="T:HangFire.Server.Filters.PerformedContext"/>
+            object handles an exception occurred during the performance of the job.
+            </summary>
+        </member>
+        <member name="T:HangFire.Server.Filters.PerformingContext">
+            <summary>
+            Provides the context for the <see cref="M:HangFire.Server.Filters.IServerFilter.OnPerforming(HangFire.Server.Filters.PerformingContext)"/>
+            method of the <see cref="T:HangFire.Server.Filters.IServerFilter"/> interface.
+            </summary>
+        </member>
+        <member name="P:HangFire.Server.Filters.PerformingContext.Canceled">
+            <summary>
+            Gets or sets a value that indicates that this <see cref="T:HangFire.Server.Filters.PerformingContext"/>
+            object was canceled.
+            </summary>
+        </member>
+        <member name="T:HangFire.GlobalJobFilters">
+            <summary>
+            Represents the global filter collection.
+            </summary>
+        </member>
+        <member name="P:HangFire.GlobalJobFilters.Filters">
+            <summary>
+            Gets the global filter collection.
+            </summary>
+        </member>
+        <member name="M:HangFire.BackgroundJobServer.#ctor(System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:HangFire.BackgroundJobServer"/>.
+            </summary>
+        </member>
+        <member name="M:HangFire.BackgroundJobServer.Start">
+            <summary>
+            Starts the server and all its workers.
+            </summary>
+        </member>
+        <member name="M:HangFire.BackgroundJobServer.Stop">
+            <summary>
+            Stops the server and its workers.
+            </summary>
+        </member>
+        <member name="P:HangFire.BackgroundJobServer.MachineName">
+            <summary>
+            Gets or sets the server name.
+            </summary>
+        </member>
+        <member name="T:HangFire.Common.States.IApplyStateFilter">
+            <summary>
+            Provides methods that are required for a state changed filter.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.States.IApplyStateFilter.OnStateApplied(HangFire.Common.States.ApplyStateContext,HangFire.Storage.IWriteOnlyTransaction)">
+            <summary>
+            Called after the specified state was applied
+            to the job within the given transaction.
+            </summary>
+        </member>
+        <member name="M:HangFire.Common.States.IApplyStateFilter.OnStateUnapplied(HangFire.Common.States.ApplyStateContext,HangFire.Storage.IWriteOnlyTransaction)">
+            <summary>
+            Called when the state with specified state was 
+            unapplied from the job within the given transaction.
+            </summary>
+        </member>
+        <member name="T:HangFire.Client.Filters.IClientFilter">
+            <summary>
+            Defines methods that are required for a client filter.
+            </summary>
+        </member>
+        <member name="M:HangFire.Client.Filters.IClientFilter.OnCreating(HangFire.Client.Filters.CreatingContext)">
+            <summary>
+            Called before the creation of the job. 
+            </summary>
+            <param name="filterContext">The filter context.</param>
+        </member>
+        <member name="M:HangFire.Client.Filters.IClientFilter.OnCreated(HangFire.Client.Filters.CreatedContext)">
+            <summary>
+            Called after the creation of the job.
+            </summary>
+            <param name="filterContext">The filter context.</param>
+        </member>
+        <member name="T:HangFire.Server.Filters.IServerFilter">
+            <summary>
+            Defines methods that are required for a server filter.
+            </summary>
+        </member>
+        <member name="M:HangFire.Server.Filters.IServerFilter.OnPerforming(HangFire.Server.Filters.PerformingContext)">
+            <summary>
+            Called before the performance of the job.
+            </summary>
+            <param name="filterContext">The filter context.</param>
+        </member>
+        <member name="M:HangFire.Server.Filters.IServerFilter.OnPerformed(HangFire.Server.Filters.PerformedContext)">
+            <summary>
+            Called after the performance of the job.
+            </summary>
+            <param name="filterContext">The filter context.</param>
+        </member>
+        <member name="T:HangFire.BackgroundJob">
+            <summary>
+            Represents a static facade for the HangFire Client API.
+            </summary>
+        </member>
+        <member name="M:HangFire.BackgroundJob.Enqueue(System.Linq.Expressions.Expression{System.Action})">
+            <summary>
+            Creates a background job based on a specified static method 
+            call expression and places it into its actual queue. 
+            Please, see the <see cref="T:HangFire.QueueAttribute"/> to learn how to 
+            place the job on a non-default queue.
+            </summary>
+            
+            <param name="methodCall">Static method call expression that will be marshalled to the Server.</param>
+            <returns>Unique identifier of the created job.</returns>
+        </member>
+        <member name="M:HangFire.BackgroundJob.Enqueue``1(System.Linq.Expressions.Expression{System.Action{``0}})">
+            <summary>
+            Creates a background job based on a specified instance method 
+            call expression and places it into its actual queue. 
+            Please, see the <see cref="T:HangFire.QueueAttribute"/> to learn how to 
+            place the job on a non-default queue.
+            </summary>
+            
+            <typeparam name="T">Type whose method will be invoked during job processing.</typeparam>
+            <param name="methodCall">Instance method call expression that will be marshalled to the Server.</param>
+            <returns>Unique identifier of the created job.</returns>
+        </member>
+        <member name="M:HangFire.BackgroundJob.Enqueue(System.Linq.Expressions.Expression{System.Action},System.String)">
+            <summary>
+            Creates a background job based on a specified static method 
+            call expression and places it into specified queue. 
+            Please, note that the <see cref="T:HangFire.QueueAttribute"/> can
+            override the specified queue.
+            </summary>
+            
+            <param name="methodCall">Instance method call expression that will be marshalled to the Server.</param>
+            <param name="queue">Queue to which the job will be placed.</param>
+            <returns>Unique identifier of the created job.</returns>
+        </member>
+        <member name="M:HangFire.BackgroundJob.Enqueue``1(System.Linq.Expressions.Expression{System.Action{``0}},System.String)">
+            <summary>
+            Creates a background job based on a specified instance method 
+            call expression and places it into specified queue. 
+            Please, note that the <see cref="T:HangFire.QueueAttribute"/> can
+            override the specified queue.
+            </summary>
+            
+            <typeparam name="T">Type whose method will be invoked during job processing.</typeparam>
+            <param name="methodCall">Instance method call expression that will be marshalled to the Server.</param>
+            <param name="queue">Queue to which the job will be placed.</param>
+            <returns>Unique identifier of the created job.</returns>
+        </member>
+        <member name="M:HangFire.BackgroundJob.Schedule(System.Linq.Expressions.Expression{System.Action},System.TimeSpan)">
+            <summary>
+            Creates a new background job based on a specified static method
+            call expression and schedules it to be enqueued after a given delay.
+            </summary>
+            
+            <param name="methodCall">Instance method call expression that will be marshalled to the Server.</param>
+            <param name="delay">Delay, after which the job will be enqueued.</param>
+            <returns>Unique identifier of the created job.</returns>
+        </member>
+        <member name="M:HangFire.BackgroundJob.Schedule``1(System.Linq.Expressions.Expression{System.Action{``0}},System.TimeSpan)">
+            <summary>
+            Creates a new background job based on a specified instance method
+            call expression and schedules it to be enqueued after a given delay.
+            </summary>
+            
+            <typeparam name="T">Type whose method will be invoked during job processing.</typeparam>
+            <param name="methodCall">Instance method call expression that will be marshalled to the Server.</param>
+            <param name="delay">Delay, after which the job will be enqueued.</param>
+            <returns>Unique identifier of the created job.</returns>
+        </member>
+        <member name="T:HangFire.QueueAttribute">
+            <summary>
+            Represents attribute, that is being used to determine queue name
+            for background jobs. It can be applied to the methods and classes. 
+            If the attribute is not applied neither to the method, nor the class, 
+            then default queue will be used.
+            </summary>
+            
+            <example><![CDATA[
+            
+            [Queue("high")]
+            public class ErrorService
+            {
+                public void ReportError(string message) { }
+            
+                [Queue("critical")]
+                public void ReportFatal(string message) { }
+            }
+            
+            // Background job will be placed on the 'high' queue.
+            BackgroundJob.Enqueue<ErrorService>(x => x.ReportError("Something bad happened"));
+            
+            // Background job will be placed on the 'critical' queue.
+            BackgroundJob.Enqueue<ErrorService>(x => x.ReportFatal("Really bad thing!"));
+            
+            ]]></example>
+        </member>
+        <member name="M:HangFire.QueueAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HangFire.QueueAttribute"/> class
+            using the specified queue name.
+            </summary>
+            <param name="queue">Queue name.</param>
+        </member>
+        <member name="P:HangFire.QueueAttribute.Queue">
+            <summary>
+            Gets the queue name that will be used for background jobs.
+            </summary>
+        </member>
+        <member name="M:HangFire.JobActivator.SetCurrent(HangFire.JobActivator)">
+            <summary>
+            Sets the current <see cref="T:HangFire.JobActivator"/> instance that will
+            be used to activate jobs.
+            </summary>
+            <param name="activator"></param>
+        </member>
+        <member name="P:HangFire.JobActivator.Current">
+            <summary>
+            Gets the current <see cref="T:HangFire.JobActivator"/> instance.
+            </summary>
+        </member>
+        <member name="T:HangFire.BackgroundJobClient">
+            <summary>
+            Represents a HangFire Client API. Contains methods related
+            to the job creation feature.
+            </summary>
+        </member>
+        <member name="M:HangFire.BackgroundJobClient.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HangFire.BackgroundJobClient"/> class
+            with the default connection and default global 
+            <see cref="T:HangFire.Client.JobCreationProcess"/> instance.
+            </summary>
+        </member>
+        <member name="M:HangFire.BackgroundJobClient.#ctor(HangFire.JobStorage)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HangFire.BackgroundJobClient"/> class
+            with a specified storage and the default global
+            <see cref="T:HangFire.Client.JobCreationProcess"/> instance.
+            </summary>
+        </member>
+        <member name="M:HangFire.BackgroundJobClient.#ctor(HangFire.JobStorage,HangFire.Client.IJobCreationProcess)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HangFire.BackgroundJobClient"/> class
+            with a specified job storage and job creation process.
+            </summary>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="storage"/> argument is null.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="process"/> argument is null.</exception>
+        </member>
+        <member name="M:HangFire.BackgroundJobClient.Create(HangFire.Common.Job,HangFire.Common.States.State)">
+            <inheritdoc />
+        </member>
+        <member name="M:HangFire.BackgroundJobClient.Dispose">
+            <summary>
+            Releases all resources used by the current instance
+            of the <see cref="T:HangFire.BackgroundJobClient"/> class.
+            </summary>
+        </member>
+    </members>
+</doc>

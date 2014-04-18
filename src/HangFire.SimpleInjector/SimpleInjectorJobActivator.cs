@@ -2,6 +2,8 @@
 namespace HangFire.SimpleInjector
 {
     using global::SimpleInjector;
+
+
     using System;
 
     public class SimpleInjectorJobActivator : JobActivator
