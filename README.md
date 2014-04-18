@@ -4,4 +4,7 @@ HangFire.SimpleInjector
 HangFire Simple Injector Integration
 
 
-To use this, download the source and compile then add the "HangFire.SimpleInjector.dll" as a reference to your application, you will also have to add Hang fire and Simple Injector from nuget for this to work.
+To use this, head to the link below and install the Nuget Package. 
+
+The package contains all the dependencies, and you can always download the source if you want :)
+
