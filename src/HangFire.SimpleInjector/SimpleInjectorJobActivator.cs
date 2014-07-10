@@ -1,11 +1,8 @@
-﻿
-namespace HangFire.SimpleInjector
+﻿using System;
+using SimpleInjector;
+
+namespace Hangfire.SimpleInjector
 {
-    using global::SimpleInjector;
-
-
-    using System;
-
     public class SimpleInjectorJobActivator : JobActivator
     {
         private readonly Container container;

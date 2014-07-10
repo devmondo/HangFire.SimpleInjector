@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace HangFire.SimpleInjector.Tests
+namespace Hangfire.SimpleInjector.Tests
 {
     using global::SimpleInjector;
 
