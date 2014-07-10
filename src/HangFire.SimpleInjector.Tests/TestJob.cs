@@ -1,5 +1,5 @@
 ﻿
-namespace HangFire.SimpleInjector.Tests
+namespace Hangfire.SimpleInjector.Tests
 {
     class TestJob
     {
