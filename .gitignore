@@ -4,3 +4,4 @@ _ReSharper.HangFire.SimpleInjector*/
 x64/
 [Bb]in/
 [Oo]bj/
+*.suo
