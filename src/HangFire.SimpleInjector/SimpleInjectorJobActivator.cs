@@ -15,6 +15,7 @@ namespace Hangfire.SimpleInjector
             }
             this.container = container;
         }
+
         public override object ActivateJob(Type jobType)
         {
             return container.GetInstance(jobType);
