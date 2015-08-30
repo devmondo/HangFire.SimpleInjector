@@ -25,13 +25,13 @@ namespace Hangfire.SimpleInjector.Tests
         public void CtorThrowsAnExceptionWhenContainerIsNull()
         {
             // ReSharper disable once UnusedVariable
-            var activator = new SimpleInjectorJobActivator(container);
+            var activator = new SimpleInjectorJobActivator(null);
         }
         [TestMethod]
         public void ActivateJobCallsSimpleInjector()
         {
             var theJob = new TestJob();
-            container.RegisterSingle<TestJob>(theJob);
+            container.RegisterSingleton<TestJob>(theJob);
             var activator = new SimpleInjectorJobActivator(container);
             var result = activator.ActivateJob(typeof(TestJob));
             Assert.AreEqual(theJob, result);
