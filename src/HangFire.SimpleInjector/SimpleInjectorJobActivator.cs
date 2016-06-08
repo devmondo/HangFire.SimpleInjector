@@ -25,6 +25,11 @@ namespace Hangfire.SimpleInjector
             {
                 throw new ArgumentNullException("container");
             }
+            
+            if (lifestyle == null)
+            {
+                throw new ArgumentNullException("lifestyle");
+            }
 
             _container = container;
             _lifestyle = lifestyle;
@@ -37,7 +42,7 @@ namespace Hangfire.SimpleInjector
 
         public override JobActivatorScope BeginScope()
         {
-            if (_lifestyle == null && _lifestyle != Lifestyle.Scoped)
+            if (_lifestyle == null || _lifestyle != Lifestyle.Scoped)
             {
                 return new SimpleInjectorScope(_container, _container.BeginExecutionContextScope());
             }
