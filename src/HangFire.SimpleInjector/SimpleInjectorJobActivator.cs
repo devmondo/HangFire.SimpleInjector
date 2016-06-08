@@ -6,34 +6,60 @@ namespace Hangfire.SimpleInjector
 {
     public class SimpleInjectorJobActivator : JobActivator
     {
-        private readonly Container container;
+        private readonly Container _container;
+        private readonly Lifestyle _lifestyle;
 
         public SimpleInjectorJobActivator(Container container)
         {
             if (container == null)
+            {
                 throw new ArgumentNullException("container");
-            this.container = container;
+            }
+
+            _container = container;
+        }
+
+        public SimpleInjectorJobActivator(Container container, Lifestyle lifestyle)
+        {
+            if (container == null)
+            {
+                throw new ArgumentNullException("container");
+            }
+            
+            if (lifestyle == null)
+            {
+                throw new ArgumentNullException("lifestyle");
+            }
+
+            _container = container;
+            _lifestyle = lifestyle;
         }
 
         public override object ActivateJob(Type jobType)
         {
-            return container.GetInstance(jobType);
+            return _container.GetInstance(jobType);
         }
 
         public override JobActivatorScope BeginScope()
         {
-            return new SimpleInjectorScope(container);
+            if (_lifestyle == null || _lifestyle != Lifestyle.Scoped)
+            {
+                return new SimpleInjectorScope(_container, _container.BeginExecutionContextScope());
+            }
+
+            return new SimpleInjectorScope(_container, _container.GetCurrentLifetimeScope());
         }
     }
 
-    class SimpleInjectorScope : JobActivatorScope
+    internal class SimpleInjectorScope : JobActivatorScope
     {
         private readonly Container _container;
+        private readonly Scope _scope;
 
-        public SimpleInjectorScope(Container container)
+        public SimpleInjectorScope(Container container, Scope scope)
         {
             _container = container;
-            _container.BeginExecutionContextScope();
+            _scope = scope;
         }
 
         public override object Resolve(Type type)
@@ -43,9 +69,10 @@ namespace Hangfire.SimpleInjector
 
         public override void DisposeScope()
         {
-            var scope = _container.GetCurrentExecutionContextScope();
-            if (scope != null)
-                scope.Dispose();
+            if (_scope != null)
+            {
+                _scope.Dispose();
+            }
         }
     }
 }
