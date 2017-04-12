@@ -1,15 +1,14 @@
 ﻿using System;
-using SimpleInjector;
-using SimpleInjector.Extensions.ExecutionContextScoping;
+using Injector = SimpleInjector;
 
 namespace Hangfire.SimpleInjector
 {
     public class SimpleInjectorJobActivator : JobActivator
     {
-        private readonly Container _container;
-        private readonly Lifestyle _lifestyle;
+        private readonly Injector.Container _container;
+        private readonly Injector.Lifestyle _lifestyle;
 
-        public SimpleInjectorJobActivator(Container container)
+        public SimpleInjectorJobActivator(Injector.Container container)
         {
             if (container == null)
             {
@@ -19,13 +18,13 @@ namespace Hangfire.SimpleInjector
             _container = container;
         }
 
-        public SimpleInjectorJobActivator(Container container, Lifestyle lifestyle)
+        public SimpleInjectorJobActivator(Injector.Container container, Injector.Lifestyle lifestyle)
         {
             if (container == null)
             {
                 throw new ArgumentNullException("container");
             }
-            
+
             if (lifestyle == null)
             {
                 throw new ArgumentNullException("lifestyle");
@@ -42,21 +41,20 @@ namespace Hangfire.SimpleInjector
 
         public override JobActivatorScope BeginScope()
         {
-            if (_lifestyle == null || _lifestyle != Lifestyle.Scoped)
+            if (_lifestyle == null || _lifestyle != Injector.Lifestyle.Scoped)
             {
-                return new SimpleInjectorScope(_container, _container.BeginExecutionContextScope());
+                return new SimpleInjectorScope(_container, Injector.Lifestyles.ThreadScopedLifestyle.BeginScope(_container));
             }
-
-            return new SimpleInjectorScope(_container, _container.GetCurrentLifetimeScope());
+            return new SimpleInjectorScope(_container, new Injector.Lifestyles.ThreadScopedLifestyle().GetCurrentScope(_container));
         }
     }
 
     internal class SimpleInjectorScope : JobActivatorScope
     {
-        private readonly Container _container;
-        private readonly Scope _scope;
+        private readonly Injector.Container _container;
+        private readonly Injector.Scope _scope;
 
-        public SimpleInjectorScope(Container container, Scope scope)
+        public SimpleInjectorScope(Injector.Container container, Injector.Scope scope)
         {
             _container = container;
             _scope = scope;
