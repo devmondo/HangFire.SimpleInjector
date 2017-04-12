@@ -39,13 +39,13 @@ namespace Hangfire.SimpleInjector
             return _container.GetInstance(jobType);
         }
 
-        public override JobActivatorScope BeginScope()
+        public override JobActivatorScope BeginScope(JobActivatorContext context)
         {
             if (_lifestyle == null || _lifestyle != Injector.Lifestyle.Scoped)
             {
-                return new SimpleInjectorScope(_container, Injector.Lifestyles.ThreadScopedLifestyle.BeginScope(_container));
+                return new SimpleInjectorScope(_container, Injector.Lifestyles.AsyncScopedLifestyle.BeginScope(_container));
             }
-            return new SimpleInjectorScope(_container, new Injector.Lifestyles.ThreadScopedLifestyle().GetCurrentScope(_container));
+            return new SimpleInjectorScope(_container, new Injector.Lifestyles.AsyncScopedLifestyle().GetCurrentScope(_container));
         }
     }
 
