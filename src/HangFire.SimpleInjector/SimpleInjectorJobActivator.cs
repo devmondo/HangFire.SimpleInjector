@@ -1,14 +1,14 @@
 ﻿using System;
-using Injector = SimpleInjector;
+using SimpleInjector;
+using SimpleInjector.Lifestyles;
 
 namespace Hangfire.SimpleInjector
 {
     public class SimpleInjectorJobActivator : JobActivator
     {
-        private readonly Injector.Container _container;
-        private readonly Injector.Lifestyle _lifestyle;
+        private readonly Container _container;
 
-        public SimpleInjectorJobActivator(Injector.Container container)
+        public SimpleInjectorJobActivator(Container container)
         {
             if (container == null)
             {
@@ -16,22 +16,6 @@ namespace Hangfire.SimpleInjector
             }
 
             _container = container;
-        }
-
-        public SimpleInjectorJobActivator(Injector.Container container, Injector.Lifestyle lifestyle)
-        {
-            if (container == null)
-            {
-                throw new ArgumentNullException("container");
-            }
-
-            if (lifestyle == null)
-            {
-                throw new ArgumentNullException("lifestyle");
-            }
-
-            _container = container;
-            _lifestyle = lifestyle;
         }
 
         public override object ActivateJob(Type jobType)
@@ -41,20 +25,17 @@ namespace Hangfire.SimpleInjector
 
         public override JobActivatorScope BeginScope(JobActivatorContext context)
         {
-            if (_lifestyle == null || _lifestyle != Injector.Lifestyle.Scoped)
-            {
-                return new SimpleInjectorScope(_container, Injector.Lifestyles.AsyncScopedLifestyle.BeginScope(_container));
-            }
-            return new SimpleInjectorScope(_container, new Injector.Lifestyles.AsyncScopedLifestyle().GetCurrentScope(_container));
+            var scope = AsyncScopedLifestyle.BeginScope(_container);
+            return new SimpleInjectorScope(_container, scope);
         }
     }
 
     internal class SimpleInjectorScope : JobActivatorScope
     {
-        private readonly Injector.Container _container;
-        private readonly Injector.Scope _scope;
+        private readonly Container _container;
+        private readonly Scope _scope;
 
-        public SimpleInjectorScope(Injector.Container container, Injector.Scope scope)
+        public SimpleInjectorScope(Container container, Scope scope)
         {
             _container = container;
             _scope = scope;
@@ -67,10 +48,7 @@ namespace Hangfire.SimpleInjector
 
         public override void DisposeScope()
         {
-            if (_scope != null)
-            {
-                _scope.Dispose();
-            }
+            _scope.Dispose();
         }
     }
 }
