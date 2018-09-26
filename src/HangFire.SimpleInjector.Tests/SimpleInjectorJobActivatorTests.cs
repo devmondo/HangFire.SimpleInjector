@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 
 namespace Hangfire.SimpleInjector.Tests
 {
@@ -6,35 +6,34 @@ namespace Hangfire.SimpleInjector.Tests
 
     using SimpleInjector;
     using System;
-    [TestClass]
+    [Collection("Tests")]
     public class SimpleInjectorJobActivatorTests
     {
         private Container container;
 
         public SimpleInjectorJobActivatorTests()
         {
-        }
-
-        [TestInitialize]
-        public void SetUp()
-        {
             container = new Container();
         }
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+
+        [Fact]
         public void CtorThrowsAnExceptionWhenContainerIsNull()
         {
-            // ReSharper disable once UnusedVariable
-            var activator = new SimpleInjectorJobActivator(null);
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                // ReSharper disable once UnusedVariable
+                var activator = new SimpleInjectorJobActivator(null);
+            });
         }
-        [TestMethod]
+
+        [Fact]
         public void ActivateJobCallsSimpleInjector()
         {
             var theJob = new TestJob();
-            container.RegisterSingleton<TestJob>(theJob);
+            container.RegisterInstance(theJob);
             var activator = new SimpleInjectorJobActivator(container);
             var result = activator.ActivateJob(typeof(TestJob));
-            Assert.AreEqual(theJob, result);
+            Assert.Equal(theJob, result);
         }
 
     }
