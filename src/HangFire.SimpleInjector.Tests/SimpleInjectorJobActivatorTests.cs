@@ -31,7 +31,7 @@ namespace Hangfire.SimpleInjector.Tests
         public void ActivateJobCallsSimpleInjector()
         {
             var theJob = new TestJob();
-            container.RegisterSingleton<TestJob>(theJob);
+            container.RegisterInstance<TestJob>(theJob);
             var activator = new SimpleInjectorJobActivator(container);
             var result = activator.ActivateJob(typeof(TestJob));
             Assert.AreEqual(theJob, result);

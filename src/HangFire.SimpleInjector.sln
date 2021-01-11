@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangfire.SimpleInjector", "HangFire.SimpleInjector\Hangfire.SimpleInjector.csproj", "{FE3D6A8B-0CA8-4AE3-A5AD-017654680039}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hangfire.SimpleInjector", "HangFire.SimpleInjector\Hangfire.SimpleInjector.csproj", "{FE3D6A8B-0CA8-4AE3-A5AD-017654680039}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangfire.SimpleInjector.Tests", "HangFire.SimpleInjector.Tests\Hangfire.SimpleInjector.Tests.csproj", "{3F178A45-9E2A-4D21-A913-D67451F432F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hangfire.SimpleInjector.Tests", "HangFire.SimpleInjector.Tests\Hangfire.SimpleInjector.Tests.csproj", "{3F178A45-9E2A-4D21-A913-D67451F432F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B6A36D04-02C8-4800-BB4D-948756120FD7}
 	EndGlobalSection
 EndGlobal
