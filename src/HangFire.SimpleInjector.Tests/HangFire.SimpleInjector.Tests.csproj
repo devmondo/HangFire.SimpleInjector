@@ -4,10 +4,6 @@
     <Copyright>Copyright ©  2014</Copyright>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Hangfire.Core" Version="1.6.15" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="Owin" Version="1.0" />
-    <PackageReference Include="SimpleInjector" Version="4.0.8" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
